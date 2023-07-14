@@ -23,9 +23,9 @@ export default class Queue<T> {
       this.head = this.head.next
       this.length--;
 
-      // if our list has a 1 length tail = head
+      // if our queue has a 0 length tail = head
       if (this.length === 0) {
-        this.tail = this.head
+        this.tail = this.head = undefined
       }
 
       return tmp;
