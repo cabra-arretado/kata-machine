@@ -25,6 +25,9 @@ export default class Stack<T> {
     let tmp = this.tail
     this.tail = this.tail.previous
     this.length--;
+    if (this.length === 0) {
+      this.head = this.tail = undefined
+    }
     return tmp.value
 
   }
