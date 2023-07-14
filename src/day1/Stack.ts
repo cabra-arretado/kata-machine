@@ -1,17 +1,16 @@
 export default class Stack<T> {
   public length: number;
-  public head?: Node<T>;
   public tail?: Node<T>;
 
   constructor() {
     this.length = 0;
-    this.head = this.tail = undefined;
+    this.tail = undefined;
   }
 
   push(item: T): void {
     let node = new Node(item)
     if (!this.tail) {
-      this.head = this.tail = node
+      this.tail = node
     } else {
       node.previous = this.tail
       this.tail = node
@@ -22,12 +21,13 @@ export default class Stack<T> {
     if (!this.tail) {
       return undefined
     }
+    if (this.length === 0) {
+      this.tail = undefined
+      return
+    }
     let tmp = this.tail
     this.tail = this.tail.previous
     this.length--;
-    if (this.length === 0) {
-      this.head = this.tail = undefined
-    }
     return tmp.value
 
   }
