@@ -53,17 +53,27 @@ export default class SinglyLinkedList<T> {
   }
 
   remove(item: T): T | undefined {
-    if (this.length == 0 || !this.head) {
+    let curr: Node<T> | undefined = this.head
+    if (this.length == 0 || !curr) {
       return
     }
 
-    let curr: Node<T> | undefined = this.head
-
-    for (let i = 0; i < this.length; i++) {
-      if (curr?.value == item) {
-      }
-      curr = curr?.next
+    if (curr.value == item){
+      let val = curr.value
+      this.head = curr.next
+      this.length--;
+      return val 
     }
+    while (curr.next) {
+      if (curr.next.value == item) {
+        let val = curr.next.value
+        curr.next = curr.next.next
+        this.length--;
+        return val
+      }
+      curr = curr.next
+    }
+
     return undefined
   }
 
